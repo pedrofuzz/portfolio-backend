@@ -1,9 +1,10 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const authConfig = require("../config/auth");
-
 const User = require("../models/User");
+
+require("dotenv").config();
+const authConfig = process.env.SECRET;
 
 module.exports = {
   async register(req, res) {
@@ -41,7 +42,7 @@ module.exports = {
 
     user.password = undefined;
 
-    const token = jwt.sign({ id: user.id }, authConfig.secret, {
+    const token = jwt.sign({ id: user.id }, authConfig, {
       expiresIn: 86400,
     });
 
