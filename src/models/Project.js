@@ -1,4 +1,7 @@
+const path = require("path");
 const mongoose = require("mongoose");
+require("dotenv/config");
+
 const Schema = mongoose.Schema;
 
 const ProjectSchema = new Schema(
@@ -26,7 +29,7 @@ const ProjectSchema = new Schema(
 );
 
 ProjectSchema.virtual("thumbnail_url").get(function () {
-  return `http://localhost:3333/files/${this.thumbnail}`;
+  return `${process.env.APP_URL}/files/${this.thumbnail}`;
 });
 
 module.exports = mongoose.model("Project", ProjectSchema);
