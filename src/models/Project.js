@@ -29,7 +29,7 @@ const ProjectSchema = new Schema(
 );
 
 ProjectSchema.virtual("thumbnail_url").get(function () {
-  return `${process.env.APP_URL}/files/${this.thumbnail}`;
+  return `${process.env.APP_URL}files/${this.thumbnail}`;
 });
 
 module.exports = mongoose.model("Project", ProjectSchema);
