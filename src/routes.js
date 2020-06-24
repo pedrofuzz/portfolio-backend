@@ -15,6 +15,10 @@ routes.get("/projects/:project_id", ProjectController.show);
 
 routes.post("/admin/login", AuthController.login);
 
+routes.get("/files/:name", (res, req) => {
+  res.status(200);
+});
+
 routes.use(authMiddleware).get("/auth", AuthController.authenticated);
 
 routes
